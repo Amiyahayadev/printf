@@ -1,18 +1,23 @@
 #include "main.h"
 
 /**
+ * write_ch - writes a character to standard output
+ * @a: character to print
+ * Return: 1 on success, -1 is on error appropriately.
+ */
+int write_ch(char a)
+{
+	return (write(1, &a, 1));
+}
+
+/**
  * print_char - prints argument as character
  * @ap: variadic arguments list
  * Return: length of character printed
  */
 int print_char(va_list ap)
 {
-	int len = 0;
-	char c = va_arg(ap, int);
-
-	_putchar(c);
-	len = 1;
-	return (len);
+	return (write_ch(va_arg(ap, int)));
 }
 
 /**
@@ -30,9 +35,9 @@ int print_string(va_list ap)
 		s = "(null)";
 	len = 0;
 
-	while (*s != '\0)
+	while (*s != '\0')
 	{
-		_putchar(*s);
+		write_ch(*s);
 		s++;
 		len++;
 	}

@@ -24,9 +24,11 @@ int _printf(const char *format, ...)
 	j = 0;
 	while (format[j] != '\0')
 	{
+		if (format[0] == '%' && format[1] == ' ')
+			return (-1);
 		if (format[j] == '%' && format[j + 1] == '%')
 		{
-			_putchar('%');
+			write_ch('%');
 			j += 2;
 			t_len++;
 			continue;
@@ -48,8 +50,8 @@ int _printf(const char *format, ...)
 			}
 			if (!specifier_found)
 			{
-				_putchar('%');
-				_putchar(format[j]);
+				write_ch('%');
+				write_ch(format[j]);
 				t_len += 2;
 			}
 			j++;
@@ -57,7 +59,7 @@ int _printf(const char *format, ...)
 		}
 		if (format[j] == '%' && format[j + 1] == '\0')
 			return (t_len);
-		_putchar(format[j]);
+		write_ch(format[j]);
 		j++;
 		t_len++;
 	}

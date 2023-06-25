@@ -3,6 +3,7 @@
 
 #include <stdarg.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 /**
  * struct specifier - user defined datatype for variable to hold types
@@ -16,7 +17,7 @@ typedef struct specifier
 } spec_t;
 /*spec_t - type definition for struct specifier */
 
-int _putchar(char a);
+int write_ch(char a);
 int _printf(const char *format, ...);
 int print_char(va_list ap);
 int print_string(va_list ap);
