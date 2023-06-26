@@ -32,9 +32,10 @@ int print_string(va_list ap)
 	char *s = va_arg(ap, char *);
 
 	if (s == NULL)
+	{
 		s = "(null)";
-	len = 0;
-
+		return (-1);
+	}
 	while (*s != '\0')
 	{
 		write_ch(*s);

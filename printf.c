@@ -7,7 +7,7 @@
  */
 int _printf(const char *format, ...)
 {
-	int i, j, specifier_found;
+	int i, j, retur, specifier_found;
 
 	unsigned int t_len = 0;
 
@@ -15,7 +15,7 @@ int _printf(const char *format, ...)
 
 	spec_t search[] = {{'s', print_string}, {'c', print_char},
 			{'i', print_decimal}, {'d', print_decimal},
-			{'\0', NULL},
+			{'%', print_percent}, {'\0', NULL},
 		};
 
 	va_start(ap, format);
@@ -28,13 +28,6 @@ int _printf(const char *format, ...)
 			return (-1);
 		if (format[0] == '%' && format[1] == ' ')
 			return (-1);
-		if (format[j] == '%' && format[j + 1] == '%')
-		{
-			write_ch('%');
-			j += 2;
-			t_len++;
-			continue;
-		}
 		if (format[j] == '%' && format[j + 1] != '\0')
 		{
 			j++;
@@ -44,8 +37,10 @@ int _printf(const char *format, ...)
 			{
 				if (search[i].format == format[j])
 				{
-					t_len += search[i].conversion(ap);
-					va_arg(ap, void *);
+					retur = search[i].conversion(ap);
+					if (retur < 0)
+						return (-1);
+					t_len += retur;
 					specifier_found = 1;
 					break;
 				}

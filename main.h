@@ -23,6 +23,7 @@ int print_char(va_list ap);
 int print_string(va_list ap);
 int write_unsigned_decimal(unsigned int num);
 int print_decimal(va_list ap);
+int print_percent(va_list ap);
 /*int match_specifier(va_list ap, char specifier_char);*/
 
 #endif /*MAIN_H*/
