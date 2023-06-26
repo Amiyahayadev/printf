@@ -7,7 +7,7 @@
  */
 int write_ch(char a)
 {
-	return (write(1, &a, 1));
+        return (write(1, &a, 1));
 }
 
 /**
@@ -43,4 +43,47 @@ int print_string(va_list ap)
 	}
 	return (len);
 }
+/**
+ * print_decimal - writes integers to std ouput
+ * @ap: variadic argument list
+ * Return: length on SUCCESS
+ */
+int print_decimal(va_list ap)
+{
+	int num, len = 0;
 
+	num = va_arg(ap, int);
+	if (num == 0)
+	{
+		write_ch('0');
+		len++;
+		return (len);
+	}
+	if (num < 0)
+	{
+		write_ch('-');
+		num = -(num);
+		len++;
+	}
+	len += write_unsigned_decimal(num);
+	return (len);
+}
+
+/**
+ * write_unsigned_decimal - helper function that prints multidigit
+ * positive number recursively
+ * @num: number to print
+ * Return: length of printed digits
+ */
+int write_unsigned_decimal(unsigned int num)
+{
+	int len = 0;
+
+	if (num >= 10)
+	{
+		len += write_unsigned_decimal(num / 10);
+	}
+	write_ch('0' + (num % 10));
+	len++;
+	return (len);
+}

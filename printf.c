@@ -13,8 +13,8 @@ int _printf(const char *format, ...)
 
 	va_list ap;
 
-	spec_t search[] = {{'s', print_string},
-			{'c', print_char},
+	spec_t search[] = {{'s', print_string}, {'c', print_char},
+			{'i', print_decimal}, {'d', print_decimal},
 			{'\0', NULL},
 		};
 
@@ -24,6 +24,8 @@ int _printf(const char *format, ...)
 	j = 0;
 	while (format[j] != '\0')
 	{
+		if (format[0] == '%' && format[1] == '\0')
+			return (-1);
 		if (format[0] == '%' && format[1] == ' ')
 			return (-1);
 		if (format[j] == '%' && format[j + 1] == '%')
