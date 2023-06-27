@@ -38,8 +38,6 @@ int _printf(const char *format, ...)
 				if (search[i].format == format[j])
 				{
 					retur = search[i].conversion(ap);
-					if (retur < 0)
-						return (-1);
 					t_len += retur;
 					specifier_found = 1;
 					break;
