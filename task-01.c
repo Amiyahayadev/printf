@@ -27,19 +27,16 @@ int print_char(va_list ap)
  */
 int print_string(va_list ap)
 {
-	int len;
+	int len = 0;
 
 	char *s = va_arg(ap, char *);
 
 	if (s == NULL)
-	{
 		s = "(null)";
-		return (-1);
-	}
-	while (*s != '\0')
+
+	while (s[len] != '\0')
 	{
-		write_ch(*s);
-		s++;
+		write_ch(s[len]);
 		len++;
 	}
 	return (len);
