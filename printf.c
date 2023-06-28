@@ -48,7 +48,13 @@ int _printf(const char *format, ...)
 	va_end(ap);
 	return (t_len);
 }
-
+/**
+ * match_specifier -  helper function for printf
+ * Description - searches for valid specifier and calls appropriate funtion
+ * @ap: variadic argument list
+ * @specifier_char: format specifier to be searched
+ * Return: length of written characters
+ */
 int match_specifier(va_list ap, char specifier_char)
 {
 	int i, specifier_found;
