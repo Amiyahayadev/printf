@@ -18,12 +18,6 @@ int print_binary(va_list ap)
 		write_ch('0');
 		return (1);
 	}
-	if (num < 0)
-	{
-		write_ch('-');
-		num = -num;
-		len++;
-	}
 
 	binary = num;
 	while (binary > 0)
@@ -36,12 +30,17 @@ int print_binary(va_list ap)
 	if (biString == NULL)
 		return (-1);
 
-	for (i = binLen - 1; num > 0; i--, num /= 2)
+	for (i = binLen - 1; num > 0; i--)
+	{
 		biString[i] = (num % 2) + '0';
+		num /= 2;
+	}
 	biString[binLen] = '\0';
-	for (i = 0; biString[i] != '\0'; i++, len++)
+	for (i = 0; biString[i] != '\0'; i++)
+	{
 		write_ch(biString[i]);
-
+		len++;
+	}
 	free(biString);
 	return (len);
 }

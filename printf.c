@@ -15,7 +15,7 @@ int _printf(const char *format, ...)
 
 	spec_t search[] = {{'s', print_string}, {'c', print_char},
 			{'i', print_decimal}, {'d', print_decimal},
-			{'%', print_percent}, {'\0', NULL},
+			{'%', print_percent}, {'b', print_binary}, {'\0', NULL},
 		};
 
 	va_start(ap, format);
