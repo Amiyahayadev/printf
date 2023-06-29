@@ -27,8 +27,11 @@ int print_percent(va_list ap);
 int print_binary(va_list ap);
 int match_specifier(va_list ap, char specifier_char);
 int print_pointer(va_list ap);
-int write_hexadecimal(unsigned long num);
-
-/*int match_specifier(va_list ap, char specifier_char);*/
+int write_longhexa(unsigned long num);
+int write_hexadecimal(unsigned int num, int uppercase);
+int print_hexadecimal(va_list ap);
+int print_hexa_upper(va_list ap);
+int print_unsigned(va_list ap);
+char *allocate_mem(unsigned int size);
 
 #endif /*MAIN_H*/

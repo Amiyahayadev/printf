@@ -62,10 +62,9 @@ int match_specifier(va_list ap, char specifier_char)
 	unsigned int t_len;
 
 	spec_t search[] = {{'s', print_string}, {'c', print_char},
-			{'i', print_decimal}, {'d', print_decimal},
-			{'b', print_binary}, {'%', print_percent},
-			{'\0', NULL},
-		};
+	{'i', print_decimal}, {'d', print_decimal}, {'x', print_hexadecimal},
+	{'b', print_binary}, {'%', print_percent}, {'p', print_pointer},
+	{'u', print_unsigned}, {'X', print_hexa_upper}, {'\0', NULL}, };
 
 	specifier_found = 0;
 	for (i = 0; search[i].format != '\0'; i++)
