@@ -7,11 +7,24 @@
  */
 int print_pointer(va_list ap)
 {
-	void *ptr = va_arg(ap, void *);
-
-	unsigned long num = (unsigned long)ptr;
+	unsigned long num;
 
 	int len = 0;
+
+	void *ptr = va_arg(ap, void *);
+
+	if (ptr == NULL)
+	{
+		char * ptr = "(nil)";
+		while (ptr[len] != '\0')
+		{
+			write_ch(ptr[len]);
+			len++;
+		}
+		return (len);
+	}	
+
+	num = (unsigned long)ptr;
 
 	len += write_ch('0');
 	len += write_ch('x');
