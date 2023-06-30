@@ -1,18 +1,18 @@
 #include "main.h"
 
 /**
- * print_unsigned - prints an unsigned integer argument
- * @ap: variadic argument list
+ * print_base - prints an unsigned integer argument
+ * @num: variadic argument
+ * @base: base to be converted to
  * Return: length of characters printed or -1 on Error
  */
-int print_unsigned(va_list ap)
+int print_base(unsigned int num, int base)
 {
 	int str_len = 0;
 
 	char *numArr;
-	unsigned int num, temp, len = 0, i;
+	unsigned int temp, digit, len = 0, i;
 
-	num = va_arg(ap, unsigned int);
 	if (num == 0)
 		return (write_ch('0'));
 
@@ -20,7 +20,7 @@ int print_unsigned(va_list ap)
 	while (temp > 0)
 	{
 		len++;
-		temp /= 10;
+		temp /= base;
 	}
 	numArr = allocate_mem(len + 1);
 	if (numArr == NULL)
@@ -28,8 +28,9 @@ int print_unsigned(va_list ap)
 
 	for (i = len - 1; num > 0; i--)
 	{
-		numArr[i] = (num % 10) + '0';
-		num /= 10;
+		digit = num % base;
+		numArr[i] = digit + '0';
+		num /= base;
 	}
 	numArr[len] = '\0';
 	for (i = 0; numArr[i] != '\0'; i++)
@@ -57,4 +58,28 @@ char *allocate_mem(unsigned int size)
 		return (NULL);
 
 	return (array);
+}
+/**
+ * print_unsigned - prints an unsigned integer argument
+ * @ap: variadic argument list
+ * Return: length of characters printed or -1 on Error
+ */
+int print_unsigned(va_list ap)
+{
+	unsigned int num = va_arg(ap, unsigned int);
+
+	return (print_base(num, 10));
+}
+
+
+/**
+ * print_octal - prints an unsigned integer argument
+ * @ap: variadic argument list
+ * Return: length of characters printed or -1 on Error
+ */
+int print_octal(va_list ap)
+{
+	unsigned int num = va_arg(ap, unsigned int);
+
+	return (print_base(num, 8));
 }
