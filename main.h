@@ -28,12 +28,14 @@ int print_binary(va_list ap);
 int match_specifier(va_list ap, char specifier_char);
 int print_pointer(va_list ap);
 int write_longhexa(unsigned long num);
-int write_hexadecimal(unsigned int num, int uppercase);
+int write_hexadecimal(unsigned int num, int uppercase, int width);
 int print_hexadecimal(va_list ap);
 int print_hexa_upper(va_list ap);
 int print_unsigned(va_list ap);
 int print_base(unsigned int num, int base);
 int print_octal(va_list ap);
 char *allocate_mem(unsigned int size);
+int custom_string(va_list ap);
+int put_str(char *str);
 
 #endif /*MAIN_H*/

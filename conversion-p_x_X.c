@@ -15,14 +15,15 @@ int print_pointer(va_list ap)
 
 	if (ptr == NULL)
 	{
-		char * ptr = "(nil)";
+		char *ptr = "(nil)";
+
 		while (ptr[len] != '\0')
 		{
 			write_ch(ptr[len]);
 			len++;
 		}
 		return (len);
-	}	
+	}
 
 	num = (unsigned long)ptr;
 
@@ -59,9 +60,10 @@ int write_longhexa(unsigned long num)
  * write_hexadecimal - converts an unsigned integer argument to base 16
  * @num: variadic argument
  * @uppercase: flag to indiate uppercase hexa values
+ * @width: fixed no of characters to represent a hexadecimal conversion
  * Return: length of characters printed
  */
-int write_hexadecimal(unsigned int num, int uppercase)
+int write_hexadecimal(unsigned int num, int uppercase, int width)
 {
 	int remainder;
 	int len = 0;
@@ -70,9 +72,11 @@ int write_hexadecimal(unsigned int num, int uppercase)
 		return (write_ch('0'));
 
 	if (num >= 16)
-		len += write_hexadecimal(num / 16, uppercase);
+		len += write_hexadecimal(num / 16, uppercase, width - 1);
 
 	remainder = num % 16;
+	if (width > len)
+		len = width;
 
 	if (remainder < 10)
 		len += write_ch('0' + remainder);
@@ -95,7 +99,7 @@ int print_hexadecimal(va_list ap)
 {
 	unsigned int num = va_arg(ap, unsigned int);
 
-	return (write_hexadecimal(num, 0));
+	return (write_hexadecimal(num, 0, 0));
 }
 
 /**
@@ -107,5 +111,6 @@ int print_hexa_upper(va_list ap)
 {
 	unsigned int num = va_arg(ap, unsigned int);
 
-	return (write_hexadecimal(num, 1));
+	return (write_hexadecimal(num, 1, 0));
 }
+
