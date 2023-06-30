@@ -13,4 +13,4 @@ variable that can hold multiple datatypes e.g types of additional variadic argum
 char , int , float etc. The function pointer, which will be one of the struct member, would easily call on a conversion function if a match is found. now let’s get right into
 it
 ## Declare variables
-- declare all relevant variables
+- declare all relevant variable in line with arguments
